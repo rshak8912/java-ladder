@@ -40,13 +40,11 @@ public class Lambda {
     }
 
     private static int commonSum(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(Integer::intValue)
+                .sum();
+
     }
 
 }
